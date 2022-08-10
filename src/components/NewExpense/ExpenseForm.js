@@ -16,12 +16,28 @@ function ExpenseForm(props) {
   const dataChnageHanlder = (e) => {
     setDate(e.target.value);
   };
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const expenseData = {
+      title: enteredTitle,
+      amount: entredAmount,
+      date: new Date(entredDate),
+    };
+    console.log(expenseData);
+    setEnteredTitle("");
+    setAmount("");
+    setDate("");
+  };
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>label</label>
-          <input type="text" onChange={titleChangeHandler}></input>
+          <input
+            type="text"
+            value={enteredTitle}
+            onChange={titleChangeHandler}
+          ></input>
         </div>
         <div className="new-expense__control">
           <label>Amount</label>
@@ -29,6 +45,7 @@ function ExpenseForm(props) {
             type="Number"
             min="0.01"
             step="0.01"
+            value={entredAmount}
             onChange={amountChangeHandler}
           ></input>
         </div>
@@ -38,6 +55,7 @@ function ExpenseForm(props) {
             type="date"
             min="2019-01-01"
             max="2022-12-21"
+            value={entredDate}
             onChange={dataChnageHanlder}
           ></input>
         </div>
