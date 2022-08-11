@@ -23,7 +23,7 @@ function ExpenseForm(props) {
       amount: entredAmount,
       date: new Date(entredDate),
     };
-    console.log(expenseData);
+    props.onSaveExpenseData(expenseData);
     setEnteredTitle("");
     setAmount("");
     setDate("");
